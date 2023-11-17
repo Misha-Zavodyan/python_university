@@ -1,11 +1,13 @@
 
-with open('t.txt', 'r') as file:
-    lines = file.readlines()
+with open('t1.txt', 'r') as file:
+    lines = file.read()
 i=0
-for j in lines:
-    lines[i]=lines[i].replace("\n", "")
-    lines[i]=lines[i].split(" ")
-    i += 1
+#for j in lines:
+#    lines[i]=lines[i].replace("\n", "")
+#    lines[i]=lines[i].split(" ")
+#    i += 1
+lines  = lines.split()
+print(lines)
 
 
 for my_list in lines:
