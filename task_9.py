@@ -54,44 +54,21 @@ def MinDisc(S):
 
     return D
 
-
-
-S=[[5, 6], [3, 4], [7, 8], [1, 2],[1,20]]
-
-print(MinDisc(S))
-b=1#int(input("Enter the number of Big O time test: "))
-
-S.clear()
-avg_time_100=0
-avg_time_1000=0
-avg_time_10000 = 0
-for i in range(b):
-    print("100 points")
-    for k in range(3):
-        S.clear()
-        for j in range(10):
-            S.append([random.randint(0, 50),random.randint(0, 50)])
-
-        begin_time = time.perf_counter()
-        print(MinDisc(S))
-        avg_time_100 = (time.perf_counter() - begin_time)*1000
-        print(avg_time_100," ms" )
-        begin_time=0
-        
-    Dmin= [[1,1],1000]
-
+def Naive(S):
+    Dmin = [[1, 1], 1000]
     for i1 in range(len(S)):
         for j1 in range(len(S))[i1+1:]:
-            print()
             D1=SmallDisk(S[i1],S[j1])
+            if (j1==(len(S)-1)):
+                j1=(len(S)-2)
             for k1 in range(len(S))[j1+1:]:
                 #print(i1,j1,k1,range(len(S))[j1+1:])
                 D2=DiscFor3point(S[i1],S[j1],S[k1])
                 f1=1
                 f2=1
-                if not(inDisk(k1,D1)):
+                if not(inDisk(S[k1],D1)):
                         f1=0
-                for l in S[k1+1:]:
+                for l in S:
                     if not(inDisk(l,D1)):
                         f1=0
                     if not(inDisk(l,D2)):
@@ -100,22 +77,44 @@ for i in range(b):
                     Dmin=D1
                 if (f2==1) and (Dmin[1]>D2[1]):
                     Dmin=D2
-    print(Dmin)
-    print()
-    print()
-    print()
-                           
-                
-                
-        
-        
-        
-        
-        
-        
-    print("1000 points")
+    return Dmin
+
+
+S=[[5, 6], [3, 4], [7, 8], [1, 2],[1,20]]
+
+print(MinDisc(S))
+b=int(input("Enter the number of Big O time test: "))
+N=int(input("Enter the number of elements in the array: "))
+
+S.clear()
+avg_time_100=0
+avg_time_1000=0
+avg_time_10000 = 0
+for i in range(b):
+    print(N," points")
     for k in range(3):
-        for j in range(1000):
+        S.clear()
+        for j in range(N):
+            S.append([random.randint(0, 50),random.randint(0, 50)])
+
+        begin_time = time.perf_counter()
+        print(MinDisc(S))
+        avg_time_100 = (time.perf_counter() - begin_time)*1000
+        print(avg_time_100," ms" )
+        begin_time=0
+        
+
+    print(Naive(S))
+
+    print()
+    print()
+
+
+        
+        
+    print(N*10," points")
+    for k in range(3):
+        for j in range(N*10):
             S.append([random.randint(0, 50),random.randint(0, 50)])
 
         begin_time = time.perf_counter()
@@ -125,9 +124,9 @@ for i in range(b):
         begin_time=0
         S.clear()
 
-    print("10000 points")
+    print(N*100," points")
     for k in range(3):
-        for j in range(10000):
+        for j in range(N*100):
             S.append([random.randint(0, 50),random.randint(0, 50)])
 
         begin_time = time.perf_counter()
