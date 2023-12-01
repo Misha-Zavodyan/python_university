@@ -55,7 +55,7 @@ def MinDisc(S):
     return D
 
 def Naive(S):
-    Dmin = [[1, 1], 1000]
+    Dmin = [[1, 1], 99999999999]
     for i1 in range(len(S)):
         for j1 in range(len(S))[i1+1:]:
             D1=SmallDisk(S[i1],S[j1])
@@ -82,6 +82,7 @@ def Naive(S):
 
 S=[[5, 6], [3, 4], [7, 8], [1, 2],[1,20]]
 
+
 print(MinDisc(S))
 b=int(input("Enter the number of Big O time test: "))
 N=int(input("Enter the number of elements in the array: "))
@@ -95,16 +96,20 @@ for i in range(b):
     for k in range(3):
         S.clear()
         for j in range(N):
-            S.append([random.randint(0, 50),random.randint(0, 50)])
+            S.append([random.randint(-1000, 1000),random.randint(-1000, 1000)])
 
         begin_time = time.perf_counter()
-        print(MinDisc(S))
+        print("Disk: ",MinDisc(S))
+        print()
+        print("Naive: ",Naive(S))
+        print()
+        print()
         avg_time_100 = (time.perf_counter() - begin_time)*1000
         print(avg_time_100," ms" )
         begin_time=0
         
 
-    print(Naive(S))
+    
 
     print()
     print()
@@ -114,26 +119,30 @@ for i in range(b):
         
     print(N*10," points")
     for k in range(3):
+        S.clear()
         for j in range(N*10):
-            S.append([random.randint(0, 50),random.randint(0, 50)])
+            S.append([random.randint(-1000, 1000),random.randint(-1000, 1000)])
 
         begin_time = time.perf_counter()
-        print(MinDisc(S))
+        print("Disk: ",MinDisc(S))
+        print()
+        print("Naive: ",Naive(S))
         avg_time_1000 = (time.perf_counter() - begin_time)*1000
         print(avg_time_1000," ms" )
         begin_time=0
-        S.clear()
+        
 
     print(N*100," points")
     for k in range(3):
+        S.clear()
         for j in range(N*100):
-            S.append([random.randint(0, 50),random.randint(0, 50)])
+            S.append([random.randint(-1000, 1000),random.randint(-1000, 1000)])
 
         begin_time = time.perf_counter()
         print(MinDisc(S))
         avg_time_10000 = (time.perf_counter() - begin_time)*1000
         print(avg_time_10000," ms" )
         begin_time=0
-        S.clear()
+        
 
 print("1000/100 point: ",avg_time_1000/avg_time_100 ,"10000/1000 point: ",avg_time_10000/avg_time_1000 , "10000/100 point: ",avg_time_10000/avg_time_100 ,)
