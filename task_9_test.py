@@ -2,6 +2,7 @@ from random import shuffle
 import math
 import random
 import time
+import matplotlib.pyplot as plt
 def DiscR(a,b):
     return math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2)
 def SmallDisk(a,b):
@@ -103,7 +104,6 @@ print(MinDisc(S))
 # print("1000/100 point: ",avg_time_1000/avg_time_100 ,"10000/1000 point: ",avg_time_10000/avg_time_1000 , "10000/100 point: ",avg_time_10000/avg_time_100 ,)
 
 
-import matplotlib.pyplot as plt
 S.clear()
 for k in range(5):
     fig, ax = plt.subplots()

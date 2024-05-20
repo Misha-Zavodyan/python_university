@@ -17,14 +17,12 @@ def dell(list):
             c_list.append([i, 1])
         flag = 0
         print(c_list)
-    #for i in range(max_c):
-    #    list.remove(max_b)
-    list = [x for x in list if x != max_b]
-    print(list)
+    for i in range(max_c):
+        list.remove(max_b)
     return len(list)
 
 #[-2, -3, -4, -2]
-my_list=[2,3,4,2, 3]
+my_list=[2,3,4,2]
 print(my_list)
 print(dell(my_list))
 print(my_list)
